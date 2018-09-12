@@ -1,33 +1,35 @@
+import java.io.*;
+import java.util.*;
 
-/**
- * Write a description of class uniquewords here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class uniquewords
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class uniquewords
-     */
-    public uniquewords()
+    public static void main(String[] args)
     {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+        Set<String> words = new TreeSet<>();
+        
+        try
+        {
+            File file = new File("whatdidyousay.txt");
+            Scanner read = new Scanner(file);
+            while (read.hasNext())
+            {
+                //Did this instead of using read.next() so it woudln't iterate to the next word everytime
+                String nextword = read.next();
+                if (words.contains(nextword) == false)
+                {//Checks if the word looked at is already in the treeset
+                    words.add(nextword);
+                }
+            }
+        }
+        
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        
+        for (String entry: words)
+        {
+            System.out.print(entry+" , ");
+        }
+        System.out.println("\n\nUnique words: "+words.size());
     }
 }
