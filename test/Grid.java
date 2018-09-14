@@ -4,47 +4,68 @@ public class Grid
 {
    private static final int SIZE = 10;
    int[][] pixels = new int[SIZE][SIZE];
-   Stack neighbors = new Stack();
-   int start = 1;
+   Stack<Integer> neighbors = new Stack();
 
    /**
       Flood fill, starting with the given row and column.
    */
-   public void floodfill(int row, int column)
-   {
-      if (pixels[row][column+1] != 0 || pixels[row+1][column] != 0 || pixels[row-1][column] != 0 || pixels[row][column-1] != 0)
-        System.out.println("All pixels filled!");
+   public void floodfill(int row, int column, int startval)
+   { //Start will always be 1. It's just here so I can do recursion easier
+      //if (pixels[row][column+1] != 0 || pixels[row+1][column] != 0 || pixels[row-1][column] != 0 || pixels[row][column-1] != 0)
+      //  System.out.println("All pixels filled!");
+      
+      pixels[row][column] = startval;
+      neighbors.push(row);
+      neighbors.push(column);
+      startval++;
+      
+      if (startval == 100)
+          System.out.println("All Pixels are Filled!\n");
       else
       {
           //Checks each of the pixels neighbors if they equal zero and if it's not at the edge of the array
-          pixels[row][column] = start;
-          neighbors.push(start);
-          start++;
-          if (pixels[row+1][column] == 0 && row != 0)
+          if (row-1 >= 0)
           {
-              pixels[row+1][column] = start;
-              neighbors.push(start);
-              start++;
+              if (pixels[row-1][column] == 0)
+              {
+                  pixels[row-1][column] = startval;
+                  neighbors.push(column);
+                  neighbors.push(row-1);
+                  startval++;
+              }
           }
-          if (pixels[row][column+1] == 0 && column != 10)
+          if (column+1 <= 9)
           {
-              pixels[row][column+1] = start;
-              neighbors.push(start);
-              start++;
+              if (pixels[row][column+1] == 0)
+              {
+                  pixels[row][column+1] = startval;
+                  neighbors.push(column+1);
+                  neighbors.push(row);
+                  startval++;
+              }
           }
-          if (pixels[row-1][column] == 0 && row != 10)
+          if (row+1 <= 9)
           {
-              pixels[row][column+1] = start;
-              neighbors.push(start);
-              start++;
+              if (pixels[row+1][column] == 0)
+              {
+                  pixels[row+1][column] = startval;
+                  neighbors.push(column);
+                  neighbors.push(row+1);
+                  startval++;
+              }
           }
-          if (pixels[row][column-1] == 0 && column != 0)
+          if (column-1 >= 0)
           {
-              pixels[row][column+1] = start;
-              neighbors.push(start);
-              start++;
+              if (pixels[row][column-1] == 0)
+              {
+                  pixels[row][column-1] = startval;
+                  neighbors.push(column-1);
+                  neighbors.push(row);
+                  startval++;
+              }
           }
-          start = neightbors.pop();
+          
+          floodfill(neighbors.pop(),neighbors.pop(),startval);
       }
    }
 
