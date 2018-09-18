@@ -14,16 +14,18 @@ public class Grid
       //if (pixels[row][column+1] != 0 || pixels[row+1][column] != 0 || pixels[row-1][column] != 0 || pixels[row][column-1] != 0)
       //  System.out.println("All pixels filled!");
       
-      pixels[row][column] = startval;
-      neighbors.push(row);
-      neighbors.push(column);
-      startval++;
-      
-      if (startval == 100)
+      if (startval > 100)
           System.out.println("All Pixels are Filled!\n");
       else
       {
           //Checks each of the pixels neighbors if they equal zero and if it's not at the edge of the array
+          if (pixels[row][column] == 0)
+          {
+              pixels[row][column] = startval;
+              neighbors.push(column);
+              neighbors.push(row);
+              startval++;
+          }
           if (row-1 >= 0)
           {
               if (pixels[row-1][column] == 0)
