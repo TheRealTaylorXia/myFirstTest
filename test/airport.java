@@ -10,10 +10,10 @@ public class airport
         Scanner input = new Scanner(System.in);
         String flightSymbol;
         
-        System.out.println("Type in your next command:");
+        System.out.println("Type in your next command (quit to exit):");
         String command = input.nextLine();
         
-        while (command != "quit")
+        while (command.toLowerCase().contains("quit") != true)
         {
             if (command.toLowerCase().contains("takeoff"))
             {
@@ -21,9 +21,9 @@ public class airport
                 flightSymbol = input.nextLine();
                 takeoffq.add(flightSymbol);
                 System.out.println("\nAdded "+flightSymbol+"!");
-                System.out.println(takeoffq);
+                System.out.println("Take Off Queue: "+takeoffq);
                 
-                System.out.println("Type in your next command:");
+                System.out.println("\nType in your next command:\n");
                 command = input.nextLine();
             }
             else if (command.toLowerCase().contains("land"))
@@ -32,19 +32,32 @@ public class airport
                 flightSymbol = input.nextLine();
                 landq.add(flightSymbol);
                 System.out.println("\nAdded "+flightSymbol+"!");
-                System.out.println(landq);
+                System.out.println("Landing Queue: "+landq);
                 
-                System.out.println("Type in your next command:");
+                System.out.println("\nType in your next command:\n");
                 command = input.nextLine();
             }
-            else if (command.toLowerCase() == "next")
+            else if (command.toLowerCase().contains("next"))
             {
-                System.out.println("Completing landing actions first...");
-                if (landq.size()
+                System.out.println("\nNOTE: Ladning planes have priority over takeoff planes.\n ");
+                if (landq.peek() != null)
+                {
+                    System.out.println("Flight "+landq.remove() + " landed\n");
+                    System.out.println("Landing Queue: "+landq);
+                    System.out.println("Take Off Queue: "+takeoffq);
+                    System.out.println("\nType next to continue executing the queue. Otherwise, type a different command\n");
+                    command = input.nextLine();
+                }
+                else
+                {
+                    System.out.println("\nNo planes in landing queue! Moving to take off queue...");
+                    System.out.println("Flight "+takeoffq.remove() + " has taken off\n");
+                    System.out.println("Landing Queue: "+landq);
+                    System.out.println("Take Off Queue: "+takeoffq);
+                    System.out.println("\nType next to continue executing the queue. Otherwise, type a different command\n");
+                    command = input.nextLine();
+                }
             }
         }
-        
-        System.out.print("Press Enter to Exit...");
-        input.next();
     }
 }
