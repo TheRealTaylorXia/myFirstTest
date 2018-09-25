@@ -3,7 +3,7 @@ public class FloodFillTester
    public static void main(String[] args)
    {
       Grid gr = new Grid();
-      gr.floodfill(3, 4);
+      gr.floodfill(3, 4, 1);
       String[] rows = gr.toString().split("\n");
       System.out.println(rows[2]);
       System.out.println("Expected: 15  12   9   6   2  81  79  77  75  73");
@@ -12,7 +12,7 @@ public class FloodFillTester
       System.out.println(rows[4]);
       System.out.println("Expected: 16  13  10   7   4  63  65  67  69  71");
       gr = new Grid();
-      gr.floodfill(0, 0);
+      gr.floodfill(0, 0, 1);
       rows = gr.toString().split("\n");
       System.out.println(rows[0]);
       System.out.println("Expected:   1   2  86  88  90  92  94  96  98 100");
