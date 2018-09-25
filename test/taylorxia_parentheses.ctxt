@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment0.text=\r\n\ A\ quiz\r\n\ Exam\ whether\ an\ expression\ is\ correctly\ formed\ with\ Parentheses\ are\ balanced\r\n\r\n\ When\ you\ see\ an\ opening\ parenthesis,\ push\ it\ on\ the\ stack\r\n\ When\ you\ see\ a\ closing\ parenthesis,\ pop\ the\ stack\r\n\ If\ the\ opening\ and\ closing\ parentheses\ don't\ match\r\n\ \ \ \ \ \ The\ parentheses\ are\ unbalanced.\ Exit\r\n\ If\ at\ the\ end\ the\ stack\ is\ empty\r\n\ \ \ \ \ \ The\ parentheses\ are\ balanced.\r\n\ Else\r\n\ \ \ \ \ \ The\ parentheses\ are\ not\ balanced\r\n\r\n\ Write\ the\ code\ to\ test\ the\ above\r\n
+comment1.params=test
+comment1.target=void\ balance_check(java.lang.String)
+numComments=2
